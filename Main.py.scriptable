@@ -1,0 +1,12 @@
+{
+  "always_run_in_app" : false,
+  "icon" : {
+    "color" : "gray",
+    "glyph" : "magic"
+  },
+  "name" : "Main.py",
+  "script" : "from telegram import Update\nfrom telegram.ext import Application, CommandHandler, ContextTypes\nimport os\n\nasync def commander_command(update: Update, context: ContextTypes.DEFAULT_TYPE):\n    message = \"Passe commande via ce lien 👇:\\nhttps:\/\/docs.google.com\/forms\/d\/e\/1FAIpQLScG2A8xo5FPNRDWCgtkEGNZbT6AI0VoYwb7gq2sFBKyZVs2Vw\/viewform?usp=dialog\"\n    await update.message.reply_text(message)\n\ndef main():\n    token = os.getenv(\"TELEGRAM_TOKEN\")\n    application = Application.builder().token(token).build()\n    \n    application.add_handler(CommandHandler(\"commander\", commander_command))\n    \n    application.run_polling()\n\nif __name__ == \"__main__\":\n    main()",
+  "share_sheet_inputs" : [
+
+  ]
+}
